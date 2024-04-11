@@ -3,6 +3,15 @@ const id = params.get("id");
 
 const URLimage = "https://api.pexels.com/v1/photos/" + id;
 
+const isLoading = (bool) => {
+  const loader = document.querySelector(".spinner-border");
+  if (bool) {
+    loader.classList.remove("d-none");
+  } else {
+    loader.classList.add("d-none");
+  }
+};
+
 fetch(URLimage, {
   headers: {
     Authorization: "PtBngZXlQHc8OFQeDYe2iVPr3FbiXSZ9KhfGntcukDS0RGTheGajt82u",
@@ -16,7 +25,9 @@ fetch(URLimage, {
     }
   })
   .then((image) => {
+    isLoading(true);
     const row = document.querySelector("#image-container");
+    row.innerHTML = "";
     const { photographer, photographer_url } = image;
     const imgURL = image.src.large;
     const img = document.createElement("div");
@@ -29,4 +40,7 @@ fetch(URLimage, {
       
       `;
     row.appendChild(img);
+  })
+  .catch((err) => {
+    console.log(err);
   });

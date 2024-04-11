@@ -1,4 +1,14 @@
 const URLbasic = "https://api.pexels.com/v1/search?query=";
+
+const isLoading = (bool) => {
+  const loader = document.querySelector(".spinner-border");
+  if (bool) {
+    loader.classList.remove("d-none");
+  } else {
+    loader.classList.add("d-none");
+  }
+};
+
 const fetchGeneral = (URL) => {
   fetch(URL, {
     headers: {
@@ -13,6 +23,7 @@ const fetchGeneral = (URL) => {
       }
     })
     .then((images) => {
+      isLoading(true);
       const row = document.querySelector("#img-container");
       row.innerHTML = "";
       images.photos.forEach((img) => {
