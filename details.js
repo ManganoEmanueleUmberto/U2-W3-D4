@@ -24,7 +24,7 @@ fetch(URLimage, {
     img.innerHTML = `
       <img src="${imgURL}"/>
       <p class="mt-3"><strong>Photographer:</strong> ${photographer}   </p>
-      <p><strong>Photographer personal page:</strong> ${photographer_url}   </p>
+      <p><strong>Photographer personal page:</strong><a href="${photographer_url}"> ${photographer_url}</a>   </p>
         
       
       `;
