@@ -4,7 +4,7 @@ const isLoading = (bool) => {
   const loader = document.querySelector(".spinner-border");
   if (bool) {
     loader.classList.remove("d-none");
-  } else {
+  } else if ((bool = false)) {
     loader.classList.add("d-none");
   }
 };
@@ -23,7 +23,10 @@ const fetchGeneral = (URL) => {
       }
     })
     .then((images) => {
-      isLoading(true);
+      if (document.querySelector(".spinner-border")) {
+        isLoading(true);
+      }
+
       const row = document.querySelector("#img-container");
       row.innerHTML = "";
       images.photos.forEach((img) => {
